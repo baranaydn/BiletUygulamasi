@@ -1,0 +1,35 @@
+﻿@model BiletUygulamasi.Domain.Entities.Ticket
+
+@{
+    ViewData["Title"] = "Bilet Sil";
+}
+
+<h1>Bilet Sil</h1>
+
+<h3>Bu bileti silmek istediğinizden emin misiniz?</h3>
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.FirstName)</dt>
+    <dd class="col-sm-10">@Html.DisplayFor(model => model.FirstName)</dd>
+
+    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.LastName)</dt>
+    <dd class="col-sm-10">@Html.DisplayFor(model => model.LastName)</dd>
+
+    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.TcKimlik)</dt>
+    <dd class="col-sm-10">@Html.DisplayFor(model => model.TcKimlik)</dd>
+
+    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Origin)</dt>
+    <dd class="col-sm-10">@Html.DisplayFor(model => model.Origin)</dd>
+
+    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.Destination)</dt>
+    <dd class="col-sm-10">@Html.DisplayFor(model => model.Destination)</dd>
+
+    <dt class="col-sm-2">@Html.DisplayNameFor(model => model.TravelDate)</dt>
+    <dd class="col-sm-10">@Html.DisplayFor(model => model.TravelDate)</dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <input type="submit" value="Sil" class="btn btn-danger" /> |
+    <a asp-action="Index" class="btn btn-secondary">Geri</a>
+</form>

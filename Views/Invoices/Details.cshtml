@@ -1,0 +1,20 @@
+﻿@model BiletUygulamasi.Domain.Entities.Ticket
+
+@{
+    ViewData["Title"] = "Fatura Detayı";
+}
+
+<h1>Fatura</h1>
+<hr />
+
+<div class="card p-3">
+    <h3>Fatura No: @Model.InvoiceNumber</h3>
+    <p><strong>Ad Soyad:</strong> @Model.FirstName @Model.LastName</p>
+    <p><strong>TC:</strong> @Model.TcKimlik</p>
+    <p><strong>Kalkış:</strong> @Model.Origin</p>
+    <p><strong>Varış:</strong> @Model.Destination</p>
+    <p><strong>Seyahat Tarihi:</strong> @Model.TravelDate.ToShortDateString()</p>
+    <p><strong>Faturalandırma Tarihi:</strong> @Model.InvoicedAt?.ToString("g")</p>
+</div>
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Geri</a>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BiletUygulamasi.Domain.Entities.Ticket>
+
+@{
+    ViewData["Title"] = "Faturalar";
+}
+
+<h1>Faturalar</h1>
+<hr />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ad Soyad</th>
+            <th>TC</th>
+            <th>Kalkış</th>
+            <th>Varış</th>
+            <th>Tarih</th>
+            <th>Fatura No</th>
+            <th>Faturalandırma Tarihi</th>
+            <th>Detay</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FirstName @item.LastName</td>
+                <td>@item.TcKimlik</td>
+                <td>@item.Origin</td>
+                <td>@item.Destination</td>
+                <td>@item.TravelDate.ToShortDateString()</td>
+                <td>@item.InvoiceNumber</td>
+                <td>@item.InvoicedAt?.ToString("g")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">👁</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

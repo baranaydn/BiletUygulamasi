@@ -1,0 +1,72 @@
+﻿@model IEnumerable<BiletUygulamasi.Domain.Entities.Ticket>
+
+@{
+    ViewData["Title"] = "Biletler";
+}
+
+<h1>Biletler</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Yeni Bilet</a>
+</p>
+
+@if (TempData["Ok"] != null)
+{
+    <div class="alert alert-success">@TempData["Ok"]</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+            <th>@Html.DisplayNameFor(model => model.LastName)</th>
+            <th>@Html.DisplayNameFor(model => model.TcKimlik)</th>
+            <th>@Html.DisplayNameFor(model => model.Origin)</th>
+            <th>@Html.DisplayNameFor(model => model.Destination)</th>
+            <th>@Html.DisplayNameFor(model => model.TravelDate)</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.FirstName</td>
+                <td>@item.LastName</td>
+                <td>@item.TcKimlik</td>
+                <td>@item.Origin</td>
+                <td>@item.Destination</td>
+                <td>@item.TravelDate.ToShortDateString()</td>
+                <td>
+                    @if (!item.IsInvoiced)
+                    {
+                        <span class="text-danger">Faturasız</span>
+                    }
+                    else
+                    {
+                        <span class="text-success">Faturalandı (@item.InvoiceNumber)</span>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Düzenle</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detay</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Sil</a>
+
+                    @if (!item.IsInvoiced)
+                    {
+                        <form asp-action="Invoice" method="post" style="display:inline">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <input type="password" name="password" placeholder="Şifreniz" style="width:120px" />
+                            <button type="submit" class="btn btn-sm btn-success">Faturala</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
